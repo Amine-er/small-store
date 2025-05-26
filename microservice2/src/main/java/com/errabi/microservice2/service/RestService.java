@@ -10,10 +10,12 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class RestService {
     private final RestTemplate restTemplate;
-    @Value("${microservice1.base-url}")
-    private String microServiceUrl;
+
+    /*@Value("${microservice1.base-url}")
+    private String microServiceUrl;*/
 
     public String consumeHello() {
-        return restTemplate.getForObject(microServiceUrl + "/hello", String.class);
+        String microServiceUrl = "http://MICROSERVICE1/hello"; // Use Eureka service name directly
+        return restTemplate.getForObject(microServiceUrl, String.class);
     }
 }

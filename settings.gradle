@@ -1,3 +1,4 @@
 rootProject.name = 'DiscoveryService'
 include 'microservice1'
 include 'microservice2'
+include 'eureka-server'

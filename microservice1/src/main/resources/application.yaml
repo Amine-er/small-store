@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: microservice1
+
+  datasource:
+    url: jdbc:h2:mem:microservice1db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        connection:
+          autocommit: false
+        format_sql: true
+
+server:
+  port: 8080

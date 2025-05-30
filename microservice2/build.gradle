@@ -31,8 +31,13 @@ dependencyManagement {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'org.apache.httpcomponents.client5:httpclient5'
+	implementation 'io.projectreactor.netty:reactor-netty-http'
+	/*implementation 'org.apache.httpcomponents.core5:httpcore5:5.2'
+	implementation 'org.apache.httpcomponents.core5:httpcore5-h2:5.2'*/
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'

@@ -1,9 +1,9 @@
 spring:
   application:
-    name: microservice2
+    name: microservice1
 
   datasource:
-    url: jdbc:h2:mem:microservice2db
+    url: jdbc:h2:mem:microservice1db
     driver-class-name: org.h2.Driver
     username: sa
     password: password
@@ -20,15 +20,14 @@ spring:
         format_sql: true
 
 server:
-  port: 8081
-
-microservice1:
-  hello-url: http://MICROSERVICE1/hello
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-alias: microservice1
 
 eureka:
-  instance:
-    prefer-ip-address: true
   client:
-    enabled: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://localhost:8761/eureka/

@@ -1,6 +1,7 @@
 package com.errabi.microservice2.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -10,9 +11,10 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class WebClientService {
     private final WebClient.Builder webClientBuilder;
+    @Value("${microservice1.hello-url}")
+    private String microServiceUrl;
 
     public Mono<String> consumeHello() {
-        String microServiceUrl = "https://localhost:8443/hello";
         return webClientBuilder.build()
                 .get()
                 .uri(microServiceUrl)

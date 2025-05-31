@@ -21,14 +21,18 @@ spring:
 
 server:
   port: 8081
+  ssl:
+    enabled: true
+    key-alias: microservice1
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-store-type: JKS
 
 microservice1:
-  hello-url: http://MICROSERVICE1/hello
+  hello-url: https://MICROSERVICE1/hello
 
 eureka:
-  instance:
-    prefer-ip-address: true
   client:
     enabled: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://localhost:8761/eureka/

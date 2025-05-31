@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 8761
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.jks
+    key-store-password: password
+    key-alias: microservice1
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

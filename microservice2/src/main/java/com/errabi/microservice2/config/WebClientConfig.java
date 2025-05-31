@@ -4,6 +4,7 @@ import io.netty.handler.ssl.SslContextBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
@@ -16,6 +17,13 @@ import java.security.KeyStore;
 @Configuration
 public class WebClientConfig {
     @Bean
+    @Profile("!https")
+    @LoadBalanced
+    public WebClient.Builder webClientHttpBuilder() {
+        return  WebClient.builder();
+    }
+    @Bean
+    @Profile("https")
     @LoadBalanced
     public WebClient.Builder webClientBuilder() throws Exception {
         // Load the truststore from resources

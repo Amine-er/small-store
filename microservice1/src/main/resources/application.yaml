@@ -20,14 +20,12 @@ spring:
         format_sql: true
 
 server:
-  port: 8443
-  ssl:
-    enabled: true
-    key-store: classpath:keystore.jks
-    key-store-password: password
-    key-alias: microservice1
+  port: 8082
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
+    enabled: true
     service-url:
       defaultZone: http://localhost:8761/eureka/

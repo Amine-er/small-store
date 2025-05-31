@@ -8,6 +8,10 @@ spring:
           uri: lb://MICROSERVICE1
           predicates:
             - Path=/microservice1/**
+        - id: swagger-ui
+          uri: lb://MICROSERVICE1
+          predicates:
+            - Path=/openapi/**
         - id: microservice2
           uri: lb://MICROSERVICE2
           predicates:

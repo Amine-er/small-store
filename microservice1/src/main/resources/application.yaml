@@ -21,6 +21,12 @@ spring:
 
 server:
   port: 8082
+  forward-headers-strategy: framework
+
+springdoc:
+  swagger-ui.path: /openapi/swagger-ui.html
+  api-docs.path: /openapi/v3/api-docs
+  pathsToMatch: /**
 
 eureka:
   instance:

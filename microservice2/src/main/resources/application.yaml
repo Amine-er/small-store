@@ -23,7 +23,7 @@ server:
   port: 8081
 
 microservice1:
-  hello-url: http://MICROSERVICE1/hello
+  hello-url: lb://MICROSERVICE1/microservice1/hello
 
 eureka:
   instance:

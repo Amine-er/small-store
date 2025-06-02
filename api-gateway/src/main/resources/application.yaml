@@ -8,6 +8,8 @@ spring:
           uri: lb://MICROSERVICE1
           predicates:
             - Path=/microservice1/**
+          filters:
+            - RoleValidationFilter
         - id: swagger-ui
           uri: lb://MICROSERVICE1
           predicates:
@@ -18,7 +20,7 @@ spring:
             - Path=/microservice2/**
 
 server:
-  port: 8080
+  port: 8086
 
 eureka:
   client:

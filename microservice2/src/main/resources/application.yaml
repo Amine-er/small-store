@@ -24,6 +24,8 @@ server:
 
 microservice1:
   hello-url: lb://MICROSERVICE1/microservice1/hello
+  grpc-server: localhost:9090
+
 
 eureka:
   instance:

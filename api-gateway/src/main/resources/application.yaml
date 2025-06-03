@@ -22,6 +22,11 @@ spring:
 server:
   port: 8086
 
+role-validation:
+  enabled: false
+  required-role: microservice1
+  client-name: myclient
+
 eureka:
   client:
     service-url:

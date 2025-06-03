@@ -23,6 +23,11 @@ server:
   port: 8082
   forward-headers-strategy: framework
 
+grpc:
+  server:
+    port: 9090
+
+
 springdoc:
   swagger-ui.path: /openapi/swagger-ui.html
   api-docs.path: /openapi/v3/api-docs

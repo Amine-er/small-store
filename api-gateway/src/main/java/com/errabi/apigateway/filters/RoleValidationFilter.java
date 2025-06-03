@@ -14,17 +14,27 @@ import reactor.core.publisher.Mono;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+
 @Slf4j
 @Component
 public class RoleValidationFilter extends AbstractGatewayFilterFactory<RoleValidationFilter.Config> {
 
-    public RoleValidationFilter() {
+    private final RoleValidationProperties properties;
+
+    public RoleValidationFilter(RoleValidationProperties properties) {
         super(Config.class);
+        this.properties = properties;
     }
 
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
+
+            if (!properties.isEnabled()) {
+                log.info("Role validation filter is disabled");
+                return chain.filter(exchange);
+            }
+
             HttpHeaders headers = exchange.getRequest().getHeaders();
             String authHeader = headers.getFirst(HttpHeaders.AUTHORIZATION);
 
@@ -40,17 +50,17 @@ public class RoleValidationFilter extends AbstractGatewayFilterFactory<RoleValid
 
                 // Extract resource_access.myclient.roles
                 Map<String, Object> resourceAccess = (Map<String, Object>) claims.get("resource_access");
-                if (resourceAccess == null || !resourceAccess.containsKey("myclient")) {
-                    log.error("Missing resource_access for myclient");
-                    return onError(exchange, "Missing resource_access for myclient", HttpStatus.FORBIDDEN);
+                if (resourceAccess == null || !resourceAccess.containsKey(properties.getClientName())) {
+                    log.error("Missing resource_access for {}", properties.getClientName());
+                    return onError(exchange, "Missing resource_access for " + properties.getClientName(), HttpStatus.FORBIDDEN);
                 }
 
-                Map<String, Object> myClientAccess = (Map<String, Object>) resourceAccess.get("myclient");
+                Map<String, Object> myClientAccess = (Map<String, Object>) resourceAccess.get(properties.getClientName());
                 List<String> roles = (List<String>) myClientAccess.get("roles");
 
-                if (roles == null || !roles.contains("microservice1")) {
-                    log.error("User does not have the required role: microservice1");
-                    return onError(exchange, "User does not have the required role: microservice1", HttpStatus.FORBIDDEN);
+                if (roles == null || !roles.contains(properties.getRequiredRole())) {
+                    log.error("User does not have the required role: {}", properties.getRequiredRole());
+                    return onError(exchange, "User does not have the required role: " + properties.getRequiredRole(), HttpStatus.FORBIDDEN);
                 }
 
             } catch (ParseException e) {

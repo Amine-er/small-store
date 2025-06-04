@@ -1,36 +1,15 @@
 spring:
+  config:
+    import: "configserver:"
   application:
     name: microservice2
-
-  datasource:
-    url: jdbc:h2:mem:microservice2db
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        connection:
-          autocommit: false
-        format_sql: true
-
-server:
-  port: 8081
-
-microservice1:
-  hello-url: lb://MICROSERVICE1/microservice1/hello
-  grpc-server: localhost:9090
-
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    enabled: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: microservice2
+      fail-fast: true
+      retry:
+        initial-interval: 3000
+        multiplier: 1.3
+        max-interval: 10000
+        max-attempts: 20

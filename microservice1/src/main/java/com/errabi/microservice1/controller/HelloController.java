@@ -1,5 +1,6 @@
 package com.errabi.microservice1.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import java.net.UnknownHostException;
 
 @RestController
 @RequestMapping("/microservice1")
+@Slf4j
 public class HelloController {
 
     @Autowired
@@ -20,7 +22,7 @@ public class HelloController {
     public String sayHello() throws UnknownHostException {
         String port = environment.getProperty("local.server.port");
         String hostname = InetAddress.getLocalHost().getHostName();
-        System.out.println("Microservice 1 is running on hostname: " + hostname + " and port: " + port);
+        log.info("Microservice 1 is running on hostname: {} and port: {}", hostname, port);
         return "Hello, World! from hostname: " + hostname + " and port: " + port;
     }
 }

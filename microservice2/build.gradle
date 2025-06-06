@@ -33,11 +33,19 @@ dependencyManagement {
 dependencies {
 	implementation project(":proto-common")
 	implementation 'org.springframework.cloud:spring-cloud-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	// For Micrometer
+	implementation 'io.micrometer:micrometer-core'
+	implementation 'io.micrometer:micrometer-registry-influx'
+	// For Zipkin Distributed Tracing
+	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+	// Zipkin Reporter for Brave (to export traces to Zipkin)
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 	implementation 'org.apache.httpcomponents.client5:httpclient5'
 	implementation 'io.projectreactor.netty:reactor-netty-http'
 	/*implementation 'org.apache.httpcomponents.core5:httpcore5:5.2'

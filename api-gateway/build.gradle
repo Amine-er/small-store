@@ -31,10 +31,18 @@ dependencyManagement {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
 	implementation 'org.springframework.cloud:spring-cloud-starter'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	// For Micrometer
+	implementation 'io.micrometer:micrometer-core'
+	implementation 'io.micrometer:micrometer-registry-influx'
+	// For Zipkin Distributed Tracing
+	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+	// Zipkin Reporter for Brave (to export traces to Zipkin)
+	implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
 	implementation 'com.nimbusds:nimbus-jose-jwt:9.31'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 public class WebClientConsumerController {
     private final WebClientService webClientService;
 
-    @GetMapping("/consume")
+    @GetMapping("/webclient-consume")
     public Mono<String> consumeHello() {
         log.info("Consuming hello from microservice1");
         return webClientService.consumeHello();

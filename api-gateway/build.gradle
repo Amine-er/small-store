@@ -38,7 +38,6 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	// For Micrometer
 	implementation 'io.micrometer:micrometer-core'
-	implementation 'io.micrometer:micrometer-registry-influx'
 	// For Zipkin Distributed Tracing
 	implementation 'io.micrometer:micrometer-tracing-bridge-brave'
 	// Zipkin Reporter for Brave (to export traces to Zipkin)

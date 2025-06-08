@@ -9,7 +9,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Amine-er/microservices-config
+          uri: https://github.com/Amine-er/microservices-config.git
           default-label: dev
 
 # Management and actuator endpoints for monitoring the server's status.

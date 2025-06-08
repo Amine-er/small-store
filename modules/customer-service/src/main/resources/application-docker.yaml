@@ -4,7 +4,7 @@ spring:
       on-profile: docker
     import: "configserver:"
   application:
-    name: microservice1
+    name: customer-service
   cloud:
     config:
       uri: http://config-server:8888

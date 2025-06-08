@@ -8,14 +8,14 @@ services:
       - microservice-net
 
   eureka-server:
-    build: eureka-server
+    build: infrastructures/eureka-server
     ports:
       - "8761:8761"
     networks:
       - microservice-net
 
   config-server:
-    build: config-server
+    build: infrastructures/config-server
     ports:
       - "8888:8888"
     environment:
@@ -24,7 +24,7 @@ services:
       - microservice-net
 
   api-gateway:
-    build: api-gateway
+    build: modules/api-gateway
     ports:
       - "8086:8086"
     environment:
@@ -32,8 +32,8 @@ services:
     networks:
       - microservice-net
 
-  microservice1:
-    build: microservice1
+  product-service:
+    build: modules/product-service
     ports:
       - "8082:8082"
       - "9090:9090"  # gRPC
@@ -42,8 +42,8 @@ services:
     networks:
       - microservice-net
 
-  microservice2:
-    build: microservice2
+  customer-service:
+    build: modules/customer-service
     ports:
       - "8081:8081"
     environment:

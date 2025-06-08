@@ -2,11 +2,11 @@ spring:
   config:
     import: "configserver:"
   application:
-    name: microservice1
+    name: customer-service
   cloud:
     config:
       uri: http://localhost:8888
-      name: microservice1
+      name: customer-service
       fail-fast: true
       retry:
         initial-interval: 3000

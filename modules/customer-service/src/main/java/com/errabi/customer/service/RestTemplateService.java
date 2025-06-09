@@ -1,4 +1,4 @@
-package com.errabi.microservice2.service;
+package com.errabi.customer.service;
 
 import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;

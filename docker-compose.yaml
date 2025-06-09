@@ -1,4 +1,19 @@
 services:
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_DB: shared_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./api-common/docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - microservice-net
+
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin

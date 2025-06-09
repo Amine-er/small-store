@@ -1,4 +1,4 @@
-package com.errabi.microservice2.config;
+package com.errabi.customer.config;
 
 import io.micrometer.tracing.Tracer;
 import io.micrometer.tracing.propagation.Propagator;

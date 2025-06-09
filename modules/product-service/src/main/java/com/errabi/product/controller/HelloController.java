@@ -1,4 +1,4 @@
-package com.errabi.microservice1.controller;
+package com.errabi.product.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

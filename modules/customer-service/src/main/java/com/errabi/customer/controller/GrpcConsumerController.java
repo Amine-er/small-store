@@ -1,6 +1,6 @@
-package com.errabi.microservice2.controller;
+package com.errabi.customer.controller;
 
-import com.errabi.microservice2.service.GrpcClientService;
+import com.errabi.customer.service.GrpcClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

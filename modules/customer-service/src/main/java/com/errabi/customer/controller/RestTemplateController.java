@@ -1,6 +1,6 @@
-package com.errabi.microservice2.controller;
+package com.errabi.customer.controller;
 
-import com.errabi.microservice2.service.RestTemplateService;
+import com.errabi.customer.service.RestTemplateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;

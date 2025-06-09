@@ -1,4 +1,4 @@
-package com.errabi.microservice1.config;
+package com.errabi.product.config;
 
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;

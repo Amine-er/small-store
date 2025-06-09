@@ -1,4 +1,4 @@
-package com.errabi.microservice2.service;
+package com.errabi.customer.service;
 
 import com.errabi.proto.grpc.HelloServiceGrpc;
 import com.errabi.proto.grpc.HelloServiceProto;

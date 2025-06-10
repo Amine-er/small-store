@@ -1,0 +1,15 @@
+spring:
+  config:
+    import: "configserver:"
+  application:
+    name: review-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: review-service
+      fail-fast: true
+      retry:
+        initial-interval: 3000
+        multiplier: 1.3
+        max-interval: 10000
+        max-attempts: 20

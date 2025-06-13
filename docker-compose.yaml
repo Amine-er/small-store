@@ -13,7 +13,7 @@ services:
       - microservice-net
 
   postgres:
-    image: postgres
+    image: postgres:15.6
     container_name: postgres
     environment:
       POSTGRES_DB: shared_db

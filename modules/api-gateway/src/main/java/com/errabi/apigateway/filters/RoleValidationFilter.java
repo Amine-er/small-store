@@ -2,6 +2,7 @@ package com.errabi.apigateway.filters;
 
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -19,22 +20,13 @@ import java.util.Map;
 @Component
 public class RoleValidationFilter extends AbstractGatewayFilterFactory<RoleValidationFilter.Config> {
 
-    private final RoleValidationProperties properties;
-
-    public RoleValidationFilter(RoleValidationProperties properties) {
+    public RoleValidationFilter() {
         super(Config.class);
-        this.properties = properties;
     }
 
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-
-            if (!properties.isEnabled()) {
-                log.info("Role validation filter is disabled");
-                return chain.filter(exchange);
-            }
-
             HttpHeaders headers = exchange.getRequest().getHeaders();
             String authHeader = headers.getFirst(HttpHeaders.AUTHORIZATION);
 
@@ -48,19 +40,18 @@ public class RoleValidationFilter extends AbstractGatewayFilterFactory<RoleValid
                 JWT jwt = JWTParser.parse(token);
                 Map<String, Object> claims = jwt.getJWTClaimsSet().getClaims();
 
-                // Extract resource_access.myclient.roles
                 Map<String, Object> resourceAccess = (Map<String, Object>) claims.get("resource_access");
-                if (resourceAccess == null || !resourceAccess.containsKey(properties.getClientName())) {
-                    log.error("Missing resource_access for {}", properties.getClientName());
-                    return onError(exchange, "Missing resource_access for " + properties.getClientName(), HttpStatus.FORBIDDEN);
+                if (resourceAccess == null || !resourceAccess.containsKey(config.getClientName())) {
+                    log.error("Missing resource_access for {}", config.getClientName());
+                    return onError(exchange, "Missing resource_access for " + config.getClientName(), HttpStatus.FORBIDDEN);
                 }
 
-                Map<String, Object> myClientAccess = (Map<String, Object>) resourceAccess.get(properties.getClientName());
-                List<String> roles = (List<String>) myClientAccess.get("roles");
+                Map<String, Object> clientAccess = (Map<String, Object>) resourceAccess.get(config.getClientName());
+                List<String> roles = (List<String>) clientAccess.get("roles");
 
-                if (roles == null || !roles.contains(properties.getRequiredRole())) {
-                    log.error("User does not have the required role: {}", properties.getRequiredRole());
-                    return onError(exchange, "User does not have the required role: " + properties.getRequiredRole(), HttpStatus.FORBIDDEN);
+                if (roles == null || !roles.contains(config.getRequiredRole())) {
+                    log.error("User does not have the required role: {}", config.getRequiredRole());
+                    return onError(exchange, "User does not have the required role: " + config.getRequiredRole(), HttpStatus.FORBIDDEN);
                 }
 
             } catch (ParseException e) {
@@ -77,7 +68,14 @@ public class RoleValidationFilter extends AbstractGatewayFilterFactory<RoleValid
         return exchange.getResponse().setComplete();
     }
 
+    @Data
     public static class Config {
-        // Configuration properties if needed
+        private String requiredRole;
+        private String clientName;
+    }
+
+    @Override
+    public List<String> shortcutFieldOrder() {
+        return java.util.Arrays.asList("requiredRole", "clientName");
     }
 }

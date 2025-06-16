@@ -26,6 +26,30 @@ services:
     networks:
       - microservice-net
 
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.3
+    container_name: keycloak
+    command: start-dev
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: shared_db
+      KC_DB_SCHEMA: schema3
+      KC_DB_USERNAME: user
+      KC_DB_PASSWORD: password
+      KC_HOSTNAME_STRICT: false
+      KC_HTTP_ENABLED: true
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+    depends_on:
+      - postgres
+    networks:
+      - microservice-net
+
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
@@ -90,3 +114,6 @@ services:
 networks:
   microservice-net:
     driver: bridge
+
+volumes:
+  keycloak-data:

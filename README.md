@@ -22,10 +22,11 @@ A simple e-commerce app to learn advanced topics in microservices distributed ar
 ### System components Structure
 Let's explain first the system structure to understand its components:
 ```
-Small-store μService --> Parent folder. 
+Small-Store --> Parent folder. 
 |- infrastructures
   |- config-server --> Service discovery server
   |- eureka-server --> Centralized Configuration server
+  |- spring-admin-server --> Spring Admin for metrics and logs
 |-modules
   |- api-gateway --> API Gateway server
   |- customer-service --> Customer management service

@@ -74,6 +74,13 @@ services:
     networks:
       - microservice-net
 
+  spring-admin-server:
+    build: infrastructures/spring-admin-server
+    ports:
+      - "7070:7070"
+    networks:
+      - microservice-net
+
   api-gateway:
     build: modules/api-gateway
     ports:

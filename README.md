@@ -36,7 +36,7 @@ Small-Store --> Parent folder.
   |- grpc-common --> grpc shared contract proto 
 |- docker-compose.yml --> contains all services
 ```
-![image](https://github.com/user-attachments/assets/f1b95421-eac8-4f25-a86d-124ebd3e0841)
+![image](https://github.com/user-attachments/assets/97ded0d6-0b38-43bc-8d1d-53eabce5fb66)
 
 Now, as we have learned about different system components, then let's start.
 

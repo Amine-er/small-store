@@ -36,3 +36,26 @@ Small-store μService --> Parent folder.
 |- docker-compose.yml --> contains all services
 ```
 ![image](https://github.com/user-attachments/assets/f1b95421-eac8-4f25-a86d-124ebd3e0841)
+
+Now, as we have learned about different system components, then let's start.
+
+### Running Them All
+Now it's the time to run all of our  Microservices, and it's straightforward just run the following `docker-compose` commands:
+```
+docker-compose up
+```
+![docker](https://github.com/user-attachments/assets/c047928f-85eb-4f9e-aeb1-3dd57d26de17)
+
+### Access Service Discovery Server (Eureka)
+If you would like to access the Eureka service discovery point to this URL [http://localhosts:8443/eureka/web](https://localhost:8443/eureka/web) to see all the services registered inside it. 
+![eureka](https://github.com/user-attachments/assets/bc8b72eb-4870-4060-a52c-e28cf7f16c64)
+
+
+### Access Zipkin
+You can manually check traceId flow between microservices using zipkin UI at this URL [http://localhosts:9411/zipkin](https://localhost:9411/zipkin)
+![zipkin2](https://github.com/user-attachments/assets/9442954f-5564-4ddd-86ce-fc65b6da832c)
+
+### Access Spring boot admin
+You can check the dashboard of spring admin for metrics and logs at this URL [http://localhosts:7070/admin](https://localhost:7070/admin)
+![admin](https://github.com/user-attachments/assets/b4b66032-2441-4b16-aeb0-07489c741c95)
+

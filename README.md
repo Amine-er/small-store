@@ -58,5 +58,8 @@ You can manually check traceId flow between microservices using zipkin UI at thi
 
 ### Access Spring boot admin
 You can check the dashboard of spring admin for metrics and logs at this URL [http://localhosts:7070/admin](https://localhost:7070/admin)
+
+![admin2](https://github.com/user-attachments/assets/6121c73c-fa08-4be5-8dc6-4455853d9723)
+
 ![admin](https://github.com/user-attachments/assets/b4b66032-2441-4b16-aeb0-07489c741c95)
 
